@@ -12,18 +12,21 @@ These types of resources are supported:
 
 ```hcl
 module "example" {
-  source         = "terraform-alicloud-modules/simple-application-server/alicloud"
-  payment_type   = "Subscription"
-  instance_name  = "your_instance_name"
-  period         = 1
-  image_id       = "yoru_image_id"
-  plan_id        = "your_plan_id"
-  data_disk_size = 100
-  password       = "your_password"
+  source          = "terraform-alicloud-modules/simple-application-server/alicloud"
+  create_instance = true
+  payment_type    = "Subscription"
+  instance_name   = "your_instance_name"
+  period          = 1
+  image_id        = "yoru_image_id"
+  plan_id         = "your_plan_id"
+  data_disk_size  = 100
+  password        = "your_password"
 
-  disk_id       = "your_disk_id"
-  snapshot_name = "your_snapshot_name"
+  create_snapshot = true
+  disk_id         = "your_disk_id"
+  snapshot_name   = "your_snapshot_name"
 
+  create_image       = true
   custom_image_name  = "your_custom_image_name"
   system_snapshot_id = "your_system_snapshot_id"
   image_status       = "your_image_status"
