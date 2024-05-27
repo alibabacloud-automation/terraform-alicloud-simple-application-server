@@ -1,6 +1,9 @@
+provider "alicloud" {
+  region = "cn-hangzhou"
+}
 resource "random_integer" "rand" {
-  min = 1
-  max = 1000
+  min = 10000
+  max = 99999
 }
 
 data "alicloud_simple_application_server_images" "default" {
