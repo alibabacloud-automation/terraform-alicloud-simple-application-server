@@ -1,6 +1,9 @@
+provider "alicloud" {
+  region = "cn-hangzhou"
+}
 resource "random_integer" "rand" {
-  min = 1
-  max = 1000
+  min = 10000
+  max = 99999
 }
 
 data "alicloud_simple_application_server_images" "default" {
@@ -12,7 +15,6 @@ data "alicloud_simple_application_server_plans" "default" {
 }
 
 data "alicloud_simple_application_server_disks" "default" {
-  disk_type   = "System"
   instance_id = module.sas.instance_id
 }
 
@@ -32,11 +34,5 @@ module "sas" {
   create_snapshot = true
   disk_id         = data.alicloud_simple_application_server_disks.default.ids.0
   snapshot_name   = "${var.snapshot_name}-${random_integer.rand.result}"
-
-  #  alicloud_simple_application_server_custom_image
-  create_image      = true
-  custom_image_name = var.custom_image_name
-  image_status      = var.image_status
-  description       = "description"
 }
 
